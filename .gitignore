@@ -32,3 +32,5 @@ copy
 build
 MANIFEST.MF
 .class
+
+.metadata/
