@@ -33,4 +33,4 @@ build
 MANIFEST.MF
 .class
 
-.metadata/
+.metadata/*
