@@ -1,0 +1,22 @@
+package com.juno;
+
+import com.juno.battery.ChargeBattery;
+import com.juno.battery.NormalBattery;
+import com.juno.toys.ElectronicCar;
+import com.juno.toys.ElectronicRadio;
+import com.juno.toys.ElectronicRobot;
+
+public class MainClass {
+	public static void main(String[] args) {
+		ElectronicCar carToy = new ElectronicCar();
+		
+		ElectronicRadio radioToy = new ElectronicRadio(new NormalBattery());
+		
+		ChargeBattery cBat1 = new ChargeBattery();
+		radioToy.setBattery(cBat1);
+		
+		ChargeBattery cBat2 = new ChargeBattery();
+		ElectronicRobot robotToy = new ElectronicRobot();
+		robotToy.setBattery(cBat2);
+	}
+}

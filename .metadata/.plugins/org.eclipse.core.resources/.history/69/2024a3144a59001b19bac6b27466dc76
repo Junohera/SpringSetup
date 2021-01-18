@@ -1,0 +1,7 @@
+package com.juno.toys;
+
+import com.juno.battery.Battery;
+
+public class ElectronicRadio {
+	private Battery bat;
+}

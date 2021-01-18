@@ -1,0 +1,12 @@
+package com.juno.toys;
+
+import com.juno.battery.Battery;
+import com.juno.battery.NormalBattery;
+
+public class ElectronicCar {
+	private Battery bat;
+	
+	public ElectronicCar() {
+		bat = new NormalBattery();
+	}
+}

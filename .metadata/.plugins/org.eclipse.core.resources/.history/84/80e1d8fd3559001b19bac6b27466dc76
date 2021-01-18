@@ -1,0 +1,5 @@
+package fint;
+
+public class CalSum implements Calculator{
+
+}

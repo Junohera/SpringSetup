@@ -1,0 +1,5 @@
+package fint;
+
+public interface Calculator {
+	
+}

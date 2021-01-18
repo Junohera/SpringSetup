@@ -1,0 +1,5 @@
+package com.juno.battery;
+
+public class ChargeBattery implements Battery {
+
+}

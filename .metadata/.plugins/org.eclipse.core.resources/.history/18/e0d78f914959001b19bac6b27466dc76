@@ -1,0 +1,5 @@
+package com.juno.toys;
+
+public class ElectronicCar {
+	private Battery bat
+}

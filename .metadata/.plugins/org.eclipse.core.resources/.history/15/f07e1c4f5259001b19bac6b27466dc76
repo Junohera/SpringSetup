@@ -1,0 +1,11 @@
+package com.juno.member.dto;
+
+public class Student {
+    private String sNum;
+    private String sId;
+    private String sPw;
+    private String sName;
+    private int sAge;
+    private String sGender;
+    private String sMajor;
+}

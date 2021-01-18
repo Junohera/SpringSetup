@@ -1,0 +1,13 @@
+package com.juno.toys;
+
+public class ElectronicRobot {
+	private Battery bat;
+	
+	public ElectronicRobot() {
+		
+	}
+	
+	public void setBattery(Battery bat) {
+		this.bat = bat;
+	}
+}

@@ -1,0 +1,12 @@
+package com.juno.toys;
+
+import com.juno.battery.Battery;
+import com.juno.battery.NormalBattery;
+
+public class ElectronicCar {
+	private Battery bat; // 인터페이스의 레퍼런스 변수를 멤버변수로
+	
+	public ElectronicCar() {
+		bat = new NormalBattery(); // 인터페이스 멤버 변수에 battery를 임플리먼트한 클래스를 대입
+	}
+}

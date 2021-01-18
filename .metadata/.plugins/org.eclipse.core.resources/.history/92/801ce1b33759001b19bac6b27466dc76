@@ -1,0 +1,13 @@
+package fint;
+
+public class MainClass {
+	public static void main(String[] args) {
+		Calculator c;
+		CalMul cm = new CalMul();
+		c = cm;
+		int result = c.cal(10, 30);
+
+		
+		
+	}
+}

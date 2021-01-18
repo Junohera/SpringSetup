@@ -1,0 +1,9 @@
+package com.juno.spcon;
+
+public class MainClass {
+	
+	public static void main(String[] args) {
+		TransportationWalk trans = new TransportationWalk();
+		trans.move();
+	}
+}

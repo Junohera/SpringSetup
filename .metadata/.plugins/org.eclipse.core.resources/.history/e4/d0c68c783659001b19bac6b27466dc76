@@ -1,0 +1,12 @@
+package fint;
+
+public class CalDev implements Calculator{
+
+	@Override
+	public int cal(int firstNum, int secondNum) {
+		int result = firstNum * secondNum;
+		
+		return result;
+	}
+
+}
