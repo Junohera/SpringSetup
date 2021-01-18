@@ -1,6 +1,0 @@
-INDEX VERSION 1.131+/Users/juno/dev/ezenSpring/.metadata/.plugins/org.eclipse.jdt.core
-2254614813.index
-527163559.index
-1751961649.index
-2165273860.index
-4127737234.index

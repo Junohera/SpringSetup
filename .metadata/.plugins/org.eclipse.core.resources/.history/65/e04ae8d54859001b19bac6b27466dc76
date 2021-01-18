@@ -1,5 +1,0 @@
-package com.juno.battery;
-
-public interface Battery {
-
-}
