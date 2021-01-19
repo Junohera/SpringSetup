@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<bean id="dbInfo" class="com.juno.word.util.DataBaseUserInfo">
+        <property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
+        <property name="driver" value="oracle.jdbc.driver.OracleDriver"/>
+        <property name="id" value="juno"/>
+        <property name="pw" value="juno"/>
+    </bean>
+    <bean id="dbm" class="com.juno.word.util.DataBaseManager">
+    	<constructor-arg ref="dbInfo"></constructor-arg>
+    </bean>
+    
+    <bean id="wordDao" class="com.juno.word.dao.WordDao">
+    	<constructor-arg ref="dbm"></constructor-arg>
+    </bean>
+    
+    <bean id="registerService" class="com.juno.word.service.WordRegisterService">
+    	<constructor-arg ref="wordDao"></constructor-arg>
+    </bean>
+    
+    <bean id="searchService" class="com.juno.word.service.WordSearchService">
+    	<constructor-arg ref="wordDao"></constructor-arg>
+    </bean>
+    
+</beans>
