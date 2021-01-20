@@ -4,7 +4,53 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>loginForm</title>
+<style>
+    .box2 {
+        position: relative;
+        width: 500px;
+        height: 50px;
+        margin: 0 auto;
+        text-align: center;
+        line-height: 50px;
+    }
+    .temp {
+        position: relative;
+        width: 500px;
+        height: 50px;
+        margin: 0 auto;
+    }
+    .attr1 {
+        position: relative;
+        width: 244px;
+        height: 48px;
+        float: left;
+        background: yellowgreen;
+        font-size: 110%;
+        color: white;
+        text-align: center;
+        line-height: 50px;
+        font-weight: bold;
+        border: 1px solid green;
+    }
+    .attr2 {
+        position: relative;
+        width: 244px;
+        height: 48px;
+        float: left;
+        border: 1px solid green;
+        font-size: 110%;
+        text-align: left;
+        line-height: 50px;
+    }
+    #footer {
+        position: relative;
+        width: 500px;
+        height: 50px;
+        text-align: center;
+        line-height: 50px;
+    }
+</style>
 </head>
 <body>
 	<form action="login" method="POST">
