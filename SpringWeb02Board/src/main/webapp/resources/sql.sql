@@ -10,7 +10,7 @@ CREATE SEQUENCE BOARD_SEQ START WITH 1 INCREMENT BY 1;
 CREATE TABLE BOARD(
     NUM NUMBER(5) PRIMARY KEY,
     PASS VARCHAR2(30),
-    NAME VARCHAR2(30),
+    USERID VARCHAR2(30),
     EMAIL VARCHAR2(30),
     TITLE VARCHAR2(100),
     CONTENT VARCHAR2(1000),
@@ -19,8 +19,8 @@ CREATE TABLE BOARD(
 );
 
 
-INSERT INTO board (num, name, email, pass, title, content) VALUES (board_seq.NEXTVAL, '홍길동', 'abcd@naver.com', '1234', '첫방문', '반갑습니다');
-INSERT INTO board (num, name, email, pass, title, content) VALUES (board_seq.NEXTVAL, '홍길남', 'abdd@naver.com', '1234', '게시물', '하잉');
+INSERT INTO board (num, userid, email, pass, title, content) VALUES (board_seq.NEXTVAL, 'test', 'abcd@naver.com', '1234', '첫방문', '반갑습니다');
+INSERT INTO board (num, userid, email, pass, title, content) VALUES (board_seq.NEXTVAL, 'juno', 'abdd@naver.com', '1234', '게시물', '하잉');
 
 CREATE TABLE SPMEMBER (
     ID VARCHAR2(30),
@@ -38,3 +38,10 @@ INSERT INTO SPMEMBER VALUES('test', '1234', '박지성', '010', '1234', '5678', 
 INSERT INTO SPMEMBER VALUES('admin', '1234', '박지성', '010', '1234', '5678', 'scott@naver.com');
 INSERT INTO SPMEMBER VALUES('hong', '1234', '박지성', '010', '1234', '5678', 'scott@naver.com');
 
+SELECT * FROM member;
+
+UPDATE BOARD SET READCOUNT = READCOUNT + 1 WHERE NUM = 2;
+
+SELECT * FROM BOARD;
+
+SELECT * FROM spmember;
