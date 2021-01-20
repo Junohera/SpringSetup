@@ -37,4 +37,4 @@ MANIFEST.MF
 /.metadata/
 Servers/Tomcat v9.0 Server at localhost-config/server.xml
 Servers/*
-target/*
+*/target/*
