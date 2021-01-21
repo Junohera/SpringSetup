@@ -18,6 +18,14 @@ public class MemberController {
 	@Autowired
 	MemberService ms;
 	
+	
+	@RequestMapping(value = "memberEditForm")
+	public String memberEditForm(Model model, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		if (session.getAttribute("loginUser") == null) return "loginForm";
+		return "editForm";
+	}
+	
 	@RequestMapping(value = "memberJoin", method = RequestMethod.POST)
 	public String memberJoin(Model model, HttpServletRequest request) {
 		String id = request.getParameter("id");
@@ -52,7 +60,7 @@ public class MemberController {
 	
 	@RequestMapping(value = "memberJoinForm")
 	public String joinForm(Model model) {
-		return "memberJoinForm";
+		return "joinForm";
 	}
 	
 	@RequestMapping(value = "login", method = RequestMethod.POST)
