@@ -9,6 +9,26 @@ function idCheck() {
     window.open("idcheck?id=" + id, "dupcheck", opt);
 };
 
+function editCheck() {
+    if (document.frm.pw.value === "") {
+        alert("pw");
+        frm.pw.focus();
+        return false;
+    }
+    if (document.frm.pw.value != document.frm.pw_check.value) {
+        alert("not equal");
+        frm.pw_check.focus();
+        return false;
+    }
+    if (document.frm.re_id.value === "") {
+        alert("do id check");
+        frm.id.focus();
+        return false;
+    }
+
+    return true;
+}
+
 function joinCheck() {
     if (document.frm.name.value.length === 0) {
         alert("name");
