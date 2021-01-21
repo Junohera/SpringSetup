@@ -50,9 +50,9 @@
             </table>
             <br>
             <br>
-            <input type="submit" value="join" onclick="return editCheck()">
+            <input type="submit" value="edit" onclick="return editCheck()">
             <input type="reset" value="clear">
-            <input type="button" value="go to signIn" onclick="history.go(-1);">
+            <input type="button" value="go to main" onclick="history.go(-1);">
         </form>
     </div>
 </body>

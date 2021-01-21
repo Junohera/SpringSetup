@@ -34,13 +34,26 @@
 					<td align="center">
 						${b.num}
 					</td>
-					<td><a href="boardView?num=${b.num}">${b.title}</a></td>
+					<td>
+						<a href="boardView?num=${b.num}">${b.title}</a>
+						<c:if test="${b.replyCnt > 0}">
+							<span style="color:red; font-weight:bold;">[${b.replyCnt}]</span>
+						</c:if>
+					</td>
 					<td align="center">${b.userid}</td>
 					<td align="center"><fmt:formatDate value="${b.writedate}"></fmt:formatDate></td>
 					<td align="center">${b.readcount}</td>
 				</tr>
 			</c:forEach>
 		</table>
+		
+		<jsp:include page="/resources/paging/paging.jsp">
+			<jsp:param value="${paging.page}" name="page" />
+			<jsp:param value="${paging.beginPage}" name="beginPage" />
+			<jsp:param value="${paging.endPage}" name="endPage" />
+			<jsp:param value="${paging.prev}" name="prev" />
+			<jsp:param value="${paging.next}" name="next" />
+		</jsp:include>
 	</div>
 </body>
 </html>

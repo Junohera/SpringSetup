@@ -59,3 +59,36 @@ function idok(id) {
     opener.frm.re_id.value = document.frm.id.value;
     self.close();
 };
+
+function boardCheck() {
+    if (document.frm.pass.value === "") {
+        alert("pw");
+        document.frm.pass.focus();
+        return false;
+    }
+    if (document.frm.title.value === "") {
+        alert("title");
+        document.frm.title.focus();
+        return false;
+    }
+    if (document.frm.content.value === "") {
+        alert("content");
+        document.frm.content.focus();
+        return false;
+    }
+
+    return true;
+};
+
+function open_win(url, name) {
+    var opt = "toolbar=no, menubar=no, resizable=no, width=450, height=200";
+    window.open(url, name, opt);
+};
+
+function replyCheck() {
+    if (document.frm2.content.value === "") {
+        alert("content");
+        return false;
+    }
+    return true;
+}

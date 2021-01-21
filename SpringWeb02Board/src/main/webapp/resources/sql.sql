@@ -45,3 +45,62 @@ UPDATE BOARD SET READCOUNT = READCOUNT + 1 WHERE NUM = 2;
 SELECT * FROM BOARD;
 
 SELECT * FROM spmember;
+
+SELECT * FROM BOARD ORDER BY NUM DESC;
+
+select count(*) as totalCount from board;
+
+SELECT * FROM BOARD ORDER BY NUM DESC;
+
+SELECT 
+SELECT  FROM BOARD ORDER BY NUM DESC
+
+SELECT * FROM
+(SELECT * FROM
+(SELECT ROWNUM AS RN, T.* FROM
+(SELECT * FROM board ORDER BY num DESC) T
+) WHERE RN >= 0
+) WHERE RN <= 2;
+
+
+INSERT INTO BOARD (NUM, PASS, USERID, EMAIL, TITLE, CONTENT) VALUES (BOARD_SEQ.NEXTVAL, 1234, 'juno', 'select@gmail.com', 'test1', 'congtent');
+INSERT INTO BOARD (NUM, PASS, USERID, EMAIL, TITLE, CONTENT) VALUES (BOARD_SEQ.NEXTVAL, 1234, 'juno', 'select@gmail.com', 'test2', 'congtent');
+INSERT INTO BOARD (NUM, PASS, USERID, EMAIL, TITLE, CONTENT) VALUES (BOARD_SEQ.NEXTVAL, 1234, 'juno', 'select@gmail.com', 'test3', 'congtent');
+INSERT INTO BOARD (NUM, PASS, USERID, EMAIL, TITLE, CONTENT) VALUES (BOARD_SEQ.NEXTVAL, 1234, 'juno', 'select@gmail.com', 'test4', 'congtent');
+INSERT INTO BOARD (NUM, PASS, USERID, EMAIL, TITLE, CONTENT) VALUES (BOARD_SEQ.NEXTVAL, 1234, 'juno', 'select@gmail.com', 'test5', 'congtent');
+INSERT INTO BOARD (NUM, PASS, USERID, EMAIL, TITLE, CONTENT) VALUES (BOARD_SEQ.NEXTVAL, 1234, 'juno', 'select@gmail.com', 'test6', 'congtent');
+INSERT INTO BOARD (NUM, PASS, USERID, EMAIL, TITLE, CONTENT) VALUES (BOARD_SEQ.NEXTVAL, 1234, 'juno', 'select@gmail.com', 'test7', 'congtent');
+INSERT INTO BOARD (NUM, PASS, USERID, EMAIL, TITLE, CONTENT) VALUES (BOARD_SEQ.NEXTVAL, 1234, 'juno', 'select@gmail.com', 'test8', 'congtent');
+INSERT INTO BOARD (NUM, PASS, USERID, EMAIL, TITLE, CONTENT) VALUES (BOARD_SEQ.NEXTVAL, 1234, 'juno', 'select@gmail.com', 'test9', 'congtent');
+INSERT INTO BOARD (NUM, PASS, USERID, EMAIL, TITLE, CONTENT) VALUES (BOARD_SEQ.NEXTVAL, 1234, 'juno', 'select@gmail.com', 'test10', 'congtent');
+INSERT INTO BOARD (NUM, PASS, USERID, EMAIL, TITLE, CONTENT) VALUES (BOARD_SEQ.NEXTVAL, 1234, 'juno', 'select@gmail.com', 'test11', 'congtent');
+INSERT INTO BOARD (NUM, PASS, USERID, EMAIL, TITLE, CONTENT) VALUES (BOARD_SEQ.NEXTVAL, 1234, 'juno', 'select@gmail.com', 'test12', 'congtent');
+INSERT INTO BOARD (NUM, PASS, USERID, EMAIL, TITLE, CONTENT) VALUES (BOARD_SEQ.NEXTVAL, 1234, 'juno', 'select@gmail.com', 'test13', 'congtent');
+INSERT INTO BOARD (NUM, PASS, USERID, EMAIL, TITLE, CONTENT) VALUES (BOARD_SEQ.NEXTVAL, 1234, 'juno', 'select@gmail.com', 'test14', 'congtent');
+INSERT INTO BOARD (NUM, PASS, USERID, EMAIL, TITLE, CONTENT) VALUES (BOARD_SEQ.NEXTVAL, 1234, 'juno', 'select@gmail.com', 'test15', 'congtent');
+INSERT INTO BOARD (NUM, PASS, USERID, EMAIL, TITLE, CONTENT) VALUES (BOARD_SEQ.NEXTVAL, 1234, 'juno', 'select@gmail.com', 'test16', 'congtent');
+INSERT INTO BOARD (NUM, PASS, USERID, EMAIL, TITLE, CONTENT) VALUES (BOARD_SEQ.NEXTVAL, 1234, 'juno', 'select@gmail.com', 'test17', 'congtent');
+INSERT INTO BOARD (NUM, PASS, USERID, EMAIL, TITLE, CONTENT) VALUES (BOARD_SEQ.NEXTVAL, 1234, 'juno', 'select@gmail.com', 'test18', 'congtent');
+INSERT INTO BOARD (NUM, PASS, USERID, EMAIL, TITLE, CONTENT) VALUES (BOARD_SEQ.NEXTVAL, 1234, 'juno', 'select@gmail.com', 'test19', 'congtent');
+INSERT INTO BOARD (NUM, PASS, USERID, EMAIL, TITLE, CONTENT) VALUES (BOARD_SEQ.NEXTVAL, 1234, 'juno', 'select@gmail.com', 'test20', 'congtent');
+INSERT INTO BOARD (NUM, PASS, USERID, EMAIL, TITLE, CONTENT) VALUES (BOARD_SEQ.NEXTVAL, 1234, 'juno', 'select@gmail.com', 'test21', 'congtent');
+INSERT INTO BOARD (NUM, PASS, USERID, EMAIL, TITLE, CONTENT) VALUES (BOARD_SEQ.NEXTVAL, 1234, 'juno', 'select@gmail.com', 'test22', 'congtent');
+INSERT INTO BOARD (NUM, PASS, USERID, EMAIL, TITLE, CONTENT) VALUES (BOARD_SEQ.NEXTVAL, 1234, 'juno', 'select@gmail.com', 'test23', 'congtent');
+INSERT INTO BOARD (NUM, PASS, USERID, EMAIL, TITLE, CONTENT) VALUES (BOARD_SEQ.NEXTVAL, 1234, 'juno', 'select@gmail.com', 'test24', 'congtent');
+INSERT INTO BOARD (NUM, PASS, USERID, EMAIL, TITLE, CONTENT) VALUES (BOARD_SEQ.NEXTVAL, 1234, 'juno', 'select@gmail.com', 'test25', 'congtent');
+INSERT INTO BOARD (NUM, PASS, USERID, EMAIL, TITLE, CONTENT) VALUES (BOARD_SEQ.NEXTVAL, 1234, 'juno', 'select@gmail.com', 'test26', 'congtent');
+INSERT INTO BOARD (NUM, PASS, USERID, EMAIL, TITLE, CONTENT) VALUES (BOARD_SEQ.NEXTVAL, 1234, 'juno', 'select@gmail.com', 'test27', 'congtent');
+INSERT INTO BOARD (NUM, PASS, USERID, EMAIL, TITLE, CONTENT) VALUES (BOARD_SEQ.NEXTVAL, 1234, 'juno', 'select@gmail.com', 'test28', 'congtent');
+INSERT INTO BOARD (NUM, PASS, USERID, EMAIL, TITLE, CONTENT) VALUES (BOARD_SEQ.NEXTVAL, 1234, 'juno', 'select@gmail.com', 'test29', 'congtent');
+INSERT INTO BOARD (NUM, PASS, USERID, EMAIL, TITLE, CONTENT) VALUES (BOARD_SEQ.NEXTVAL, 1234, 'juno', 'select@gmail.com', 'test30', 'congtent');
+
+
+select * from reply;
+select * from board order by num desc;
+
+ALTER TABLE BOARD ADD
+(
+  REPLY NUMBER (3)
+);
+
+insert into reply (num, boardnum, userid, content) values (REPLY_SEQ.NEXTVAL, 325, 'juno', '멍청이');

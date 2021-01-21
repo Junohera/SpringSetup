@@ -11,10 +11,19 @@ public class SpBoard {
     private String content;
     private int readcount;
     private Timestamp writedate;
+	private int replyCnt;
+	
+	public int getReplyCnt() {
+		return replyCnt;
+	}
+	public void setReplyCnt(int replyCnt) {
+		this.replyCnt = replyCnt;
+	}
 	@Override
 	public String toString() {
 		return "SpBoard [num=" + num + ", pass=" + pass + ", userid=" + userid + ", email=" + email + ", title=" + title
-				+ ", content=" + content + ", readcount=" + readcount + ", writedate=" + writedate + "]";
+				+ ", content=" + content + ", readcount=" + readcount + ", writedate=" + writedate + ", replyCnt="
+				+ replyCnt + "]";
 	}
 	public int getNum() {
 		return num;

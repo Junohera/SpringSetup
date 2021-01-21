@@ -18,6 +18,30 @@ public class MemberController {
 	@Autowired
 	MemberService ms;
 	
+	@RequestMapping(value = "logout")
+	public String logout(Model model, HttpServletRequest request) {
+		request.getSession().invalidate();
+		return "redirect:/";
+	}
+	
+	@RequestMapping(value = "memberEdit", method=RequestMethod.POST)
+	public String memberEdit(Model model, HttpServletRequest request) {
+		SpMember m = new SpMember();
+		m.setId(request.getParameter("id"));
+		m.setPw(request.getParameter("pw"));
+		m.setName(request.getParameter("name"));
+		m.setPhone1(request.getParameter("phone1"));
+		m.setPhone2(request.getParameter("phone2"));
+		m.setPhone3(request.getParameter("phone3"));
+		m.setEmail(request.getParameter("email"));
+		int result = ms.memberModify(m);
+
+		if (result == 1) {
+			request.getSession().setAttribute("loginUser", m);
+		}
+		
+		return "redirect:/main";
+	}
 	
 	@RequestMapping(value = "memberEditForm")
 	public String memberEditForm(Model model, HttpServletRequest request) {
@@ -28,22 +52,14 @@ public class MemberController {
 	
 	@RequestMapping(value = "memberJoin", method = RequestMethod.POST)
 	public String memberJoin(Model model, HttpServletRequest request) {
-		String id = request.getParameter("id");
-		String pw = request.getParameter("pw");
-		String name = request.getParameter("name");
-		String phone1 = request.getParameter("phone1");
-		String phone2 = request.getParameter("phone2");
-		String phone3 = request.getParameter("phone3");
-		String email = request.getParameter("email");
-		
 		SpMember m = new SpMember();		
-		m.setId(id);
-		m.setPw(pw);
-		m.setName(name);
-		m.setPhone1(phone1);
-		m.setPhone2(phone2);
-		m.setPhone3(phone3);
-		m.setEmail(email);
+		m.setId(request.getParameter("id"));
+		m.setPw(request.getParameter("pw"));
+		m.setName(request.getParameter("name"));
+		m.setPhone1(request.getParameter("phone1"));
+		m.setPhone2(request.getParameter("phone2"));
+		m.setPhone3(request.getParameter("phone3"));
+		m.setEmail(request.getParameter("email"));
 		ms.memberRegister(m);
 		
 		return "loginForm";
@@ -87,7 +103,6 @@ public class MemberController {
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Model model, HttpServletRequest request) {
-		System.out.println("testesttsetsett");
 		HttpSession session = request.getSession();
 		if (session.getAttribute("loginUser") == null) {
 			return "loginForm";

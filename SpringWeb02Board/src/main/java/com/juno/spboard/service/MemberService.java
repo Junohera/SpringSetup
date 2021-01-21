@@ -24,4 +24,8 @@ public class MemberService {
 		mDao.memberRegister(m);
 	}
 
+	public int memberModify(SpMember m) {
+		return mDao.memberUpdate(m);
+	}
+
 }

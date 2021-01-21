@@ -69,8 +69,10 @@ public class MemberDao {
 	}
 
 	public void memberRegister(SpMember m) {
-		String sql = "INSERT INTO SPMEMBER(ID, PW, NAME, PHONE1, PHONE2, PHONE3, EMAIL) VALUES(?, ?, ?, ?, ?, ?, ?)";
-		
+		String sql = ""
+				+ " INSERT INTO SPMEMBER"
+				+ " (ID, PW, NAME, PHONE1, PHONE2, PHONE3, EMAIL) VALUES"
+				+ " (?, ?, ?, ?, ?, ?, ?)";
 		try {
 			con = d.getConnection();
 			ps = con.prepareStatement(sql);
@@ -85,5 +87,35 @@ public class MemberDao {
 			
 		} catch (SQLException e) {e.printStackTrace();
 		} finally {d.close(con, ps, rs);}
+	}
+
+	public int memberUpdate(SpMember m) {
+		int result = 0;
+		String sql = ""
+				+ "UPDATE SPMEMBER"
+				+ " SET "
+				+ " PW = ? "
+				+ " , NAME = ? "
+				+ " , PHONE1 = ? "
+				+ " , PHONE2 = ? "
+				+ " , PHONE3 = ? "
+				+ " , EMAIL = ? "
+				+ " WHERE ID = ?";
+		try {
+			con = d.getConnection();
+			ps = con.prepareStatement(sql);
+			ps.setString(1, m.getPw());
+			ps.setString(2, m.getName());
+			ps.setString(3, m.getPhone1());
+			ps.setString(4, m.getPhone2());
+			ps.setString(5, m.getPhone3());
+			ps.setString(6, m.getEmail());
+			ps.setString(7, m.getId());
+			result = ps.executeUpdate();
+			
+		} catch (SQLException e) {e.printStackTrace();
+		} finally {d.close(con, ps, rs);}
+		
+		return result;
 	}
 }
