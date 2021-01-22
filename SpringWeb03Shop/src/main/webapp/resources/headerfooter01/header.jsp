@@ -29,7 +29,7 @@
                         </c:when>
                         <c:otherwise>
                             <li style="color:orange">${loginUser.name}(${loginUser.id})</li>
-                            <li><a href="memberEdit">modify</a></li>
+                            <li><a href="memberEditForm">modify</a></li>
                             <li><a href="logout">LOGOUT</a></li>
                         </c:otherwise>
                     </c:choose>

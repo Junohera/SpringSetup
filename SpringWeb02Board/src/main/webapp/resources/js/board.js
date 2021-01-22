@@ -1,13 +1,4 @@
-function idCheck() {
-    if (document.frm.id.value === "") {
-        alert("id");
-        document.frm.id.focus();
-        return;
-    }
-    var id = document.frm.id.value;
-    var opt = "toolbar=no, menubar=no, resizable=no, width=450, height=200";
-    window.open("idcheck?id=" + id, "dupcheck", opt);
-};
+
 
 function editCheck() {
     if (document.frm.pw.value === "") {
