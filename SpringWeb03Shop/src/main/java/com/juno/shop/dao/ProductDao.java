@@ -20,11 +20,11 @@ public class ProductDao {
 		ComboPooledDataSource(스프링컨테이너에 수동으로 넣어놓은 클래스)에서 연결한 Connection을 jdbcTemplate에 전달,
 		jdbcTemplate을 이용해 DB명령을 실행합니다.
 	*/
-	private JdbcTemplate template;
+	private JdbcTemplate tmp;
 
 	@Autowired
 	public ProductDao(ComboPooledDataSource ds) {
-		this.template = new JdbcTemplate(ds);
+		this.tmp = new JdbcTemplate(ds);
 	}
 
 	public ArrayList<Product> getNewList() {
@@ -32,7 +32,7 @@ public class ProductDao {
 		String sql = "SELECT * FROM NEW_PRO_VIEW";
 
 		// template.query(${String sql, Constructor Method})
-		list = template.query(sql, new RowMapper<Product>() {
+		list = tmp.query(sql, new RowMapper<Product>() {
 
 			@Override
 			public Product mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -51,7 +51,7 @@ public class ProductDao {
 		List<Product> list = null;
 		String sql = "SELECT * FROM BEST_PRO_VIEW";
 
-		list = template.query(sql, new RowMapper<Product>() {
+		list = tmp.query(sql, new RowMapper<Product>() {
 
 			@Override
 			public Product mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -65,5 +65,28 @@ public class ProductDao {
 		});
 
 		return (ArrayList<Product>) list;
+	}
+
+	public List<Product> getKindList(String kind) {
+		return tmp.query(
+				"SELECT * FROM PRODUCT WHERE KIND = ? ORDER BY PSEQ DESC"
+				, new RowMapper<Product>() {
+					@Override
+					public Product mapRow(ResultSet rs, int rowNum) throws SQLException {
+						Product p = new Product();
+						p.setPseq(rs.getInt("pseq"));
+						p.setName(rs.getString("name"));
+						p.setKind(rs.getString("kind"));
+						p.setPrice1(rs.getInt("price1"));
+						p.setPrice2(rs.getInt("price2"));
+						p.setPrice3(rs.getInt("price3"));
+						p.setContent(rs.getString("content"));
+						p.setImage(rs.getString("image"));
+						p.setUseyn(rs.getString("useyn"));
+						p.setBestyn(rs.getString("bestyn"));
+						p.setIndate(rs.getTimestamp("indate"));
+						return p;
+					}
+		}, kind);
 	}
 }

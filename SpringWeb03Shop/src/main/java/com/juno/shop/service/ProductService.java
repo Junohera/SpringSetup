@@ -1,6 +1,7 @@
 package com.juno.shop.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,10 @@ public class ProductService {
 
 	public ArrayList<Product> getBestList() {
 		return pdao.getBestList();
+	}
+
+	public List<Product> getKindList(String kind) {
+		return pdao.getKindList(kind);
 	}
 	
 }

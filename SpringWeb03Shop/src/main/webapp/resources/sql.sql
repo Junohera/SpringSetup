@@ -9,3 +9,6 @@ SELECT * FROM member;
 SELECT * FROM address;
 
 update member set ZIP_NUM = '1234' where id = 'juno';
+
+
+SELECT * FROM PRODUCT WHERE KIND = '6' ORDER BY PSEQ DESC;
