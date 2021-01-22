@@ -19,34 +19,34 @@
                 <a href="/">
                     <img src="resources/images/logo.png" width="180" height="100">
                 </a>
-                <nav id="category_menu">
-                    <ul>
-                        <c:choose>
-                            <c:when test="${empty loginUser}">
-                                <li><a href="loginForm">LOGIN</a></li>
-                                <li><a href="contract">JOIN</a></li>
-                            </c:when>
-                            <c:otherwise>
-                                <li style="color:orange">${loginUser.name}(${loginUser.id})</li>
-                                <li><a href="memberEdit">modify</a></li>
-                                <li><a href="logout">LOGOUT</a></li>
-                            </c:otherwise>
-                        </c:choose>
-                        <li><a href="cartList">CART</a></li>
-                        <li><a href="myPage">mypage</a></li>
-                        <li><a href="qnaList" style="border:0px;">Q&amp;A(1:1)</a></li>
-                    </ul>
-                </nav>
-                <nav id="top_menu">
-                    <ul>
-                        <li><a href="category?kind=1">Heels</a></li>
-                        <li><a href="category?kind=2">Boots</a></li>
-                        <li><a href="category?kind=3">Sandals</a></li>
-                        <li><a href="category?kind=4">Sneakers</a></li>
-                        <li><a href="category?kind=5">Sleeper</a></li>
-                        <li><a href="category?kind=6">On Sale</a></li>
-                    </ul>
-                </nav>
-                <div class="clear"></div>
             </div>
+            <nav id="category_menu">
+                <ul>
+                    <c:choose>
+                        <c:when test="${empty loginUser}">
+                            <li><a href="loginForm">LOGIN</a></li>
+                            <li><a href="contract">JOIN</a></li>
+                        </c:when>
+                        <c:otherwise>
+                            <li style="color:orange">${loginUser.name}(${loginUser.id})</li>
+                            <li><a href="memberEdit">modify</a></li>
+                            <li><a href="logout">LOGOUT</a></li>
+                        </c:otherwise>
+                    </c:choose>
+                    <li><a href="cartList">CART</a></li>
+                    <li><a href="myPage">mypage</a></li>
+                    <li><a href="qnaList" style="border:0px;">Q&amp;A(1:1)</a></li>
+                </ul>
+            </nav>
+            <nav id="top_menu">
+                <ul>
+                    <li><a href="category?kind=1">Heels</a></li>
+                    <li><a href="category?kind=2">Boots</a></li>
+                    <li><a href="category?kind=3">Sandals</a></li>
+                    <li><a href="category?kind=4">Sneakers</a></li>
+                    <li><a href="category?kind=5">Sleeper</a></li>
+                    <li><a href="category?kind=6">On Sale</a></li>
+                </ul>
+            </nav>
+            <div class="clear"></div>
         </header>

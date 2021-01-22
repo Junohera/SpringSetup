@@ -6,7 +6,7 @@
 
     <!-- main image -->
     <div id="main_img">
-        <img src="<c:url value='/resources/images/main_img.jsp' />" style="border-radius: 20px 20px 20px 20px; border:2px solid white;">
+        <img src="<c:url value='/resources/images/main_img.jpg' />" style="border-radius: 20px 20px 20px 20px; border:2px solid white;">
     </div>
 
     <!-- new -->
@@ -22,10 +22,11 @@
                         </h3>
                     </a>
                 </div>
-                <div class="clear"></div>
             </c:forEach>
         </div>
     </div>
+
+    <div class="clear"></div>
 
     <!-- best -->
     <div id="front">
@@ -40,7 +41,6 @@
                         </h3>
                     </a>
                 </div>
-                <div class="clear"></div>
             </c:forEach>
         </div>
     </div>
