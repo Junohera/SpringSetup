@@ -40,7 +40,8 @@ public class MemberController {
             mv.addObject("message", "없는 유저입니다");
             mv.setViewName("member/findIdPwFormStep1");
         } else {
-            mv.addObject("targetId", m.getId());
+            mv.addObject("name", name);
+            mv.addObject("phone", phone);
             mv.setViewName("member/findIdPwFormStep3"); // 인증번호 입력창
         }
         return mv;
@@ -49,11 +50,13 @@ public class MemberController {
     @RequestMapping(value = "/findIdStep3")
     public ModelAndView findIdStep3(Model model, HttpServletRequest request
             , @RequestParam("accessNum") String accessNum
-            , @RequestParam("id") String id
+            , @RequestParam("name") String name
+            , @RequestParam("phone") String phone
             ) {
 
         ModelAndView mv = new ModelAndView();
-        mv.addObject("targetId", id);
+        mv.addObject("name", name);
+        mv.addObject("phone", phone);
         mv.setViewName("member/findIdPwFormStep3");
 
         if (accessNum == null || accessNum.equals("")) {
@@ -61,7 +64,13 @@ public class MemberController {
             // 입력값 존재
             if (accessNum.equals("1234")) {// 임시번호 "1234"
                 // 인증번호 일치
-                mv.addObject("result", id);
+            	Member m =  ms.findId(name, phone);
+            	if (m != null) {
+            		mv.addObject("result", m.getId());	
+            	} else {
+            		mv.addObject("message", "회원 찾기 도중 데이터가 변경되었습니다. 관리자에게 문의하세요");
+            	}
+                
             } else {
                 // 인증번호 불일치
                 mv.addObject("message", "발급된 인증번호가 다릅니다");

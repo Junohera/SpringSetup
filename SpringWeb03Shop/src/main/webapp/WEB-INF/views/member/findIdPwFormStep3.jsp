@@ -21,9 +21,10 @@
         var result = "${result}";
 
         if (result !== "") {
-            alert("해당 아이디는 " + result + "입니다 다시 로그인시도를 해주세요.");
+            alert("인증완료 다시 로그인시도를 해주세요.");
             if (opener.document.loginFrm && opener.document.loginFrm.id) {
                 opener.document.loginFrm.id.value = result;
+                opener.document.loginFrm.pwd.focus();
             }
             self.close();
         }
@@ -34,7 +35,9 @@
 <body>
     <h2>아이디</h2>
     <form method="POST" action="findIdStep3" name="fr">
-        <input type="hidden" name="id" value="${targetId}">
+        <input type="hidden" name="name" value="${name}">
+        <input type="hidden" name="phone" value="${phone}">
+
         <table align="center" bgcolor="black" cellspacing="1" width="400">
             <c:if test="${empty result}">
                 <tr align="center" bgcolor="white" height="200">
