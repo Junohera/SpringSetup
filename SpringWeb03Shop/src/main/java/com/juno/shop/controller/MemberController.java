@@ -10,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.juno.shop.dto.Address;
 import com.juno.shop.dto.Member;
@@ -20,6 +22,60 @@ public class MemberController {
     
     @Autowired
     MemberService ms;
+
+    @RequestMapping(value = "/findIdStep1")
+    public String findIdStep1(Model model, HttpServletRequest request) {
+        return "member/findIdPwFormStep1"; // 이름, 전화번호 입력폼
+    }
+
+    @RequestMapping(value = "/findIdStep2", method = RequestMethod.POST)
+    public ModelAndView findIdStep2(Model model, HttpServletRequest request
+            , @RequestParam("name") String name
+            , @RequestParam("phone") String phone
+            ) {
+
+        ModelAndView mv = new ModelAndView();
+        Member m = ms.findId(name, phone);
+        if (m == null) {
+            mv.addObject("message", "없는 유저입니다");
+            mv.setViewName("member/findIdPwFormStep1");
+        } else {
+            mv.addObject("targetId", m.getId());
+            mv.setViewName("member/findIdPwFormStep3"); // 인증번호 입력창
+        }
+        return mv;
+    }
+
+    @RequestMapping(value = "/findIdStep3")
+    public ModelAndView findIdStep3(Model model, HttpServletRequest request
+            , @RequestParam("accessNum") String accessNum
+            , @RequestParam("id") String id
+            ) {
+
+        ModelAndView mv = new ModelAndView();
+        mv.addObject("targetId", id);
+        mv.setViewName("member/findIdPwFormStep3");
+
+        if (accessNum == null || accessNum.equals("")) {
+        } else {
+            // 입력값 존재
+            if (accessNum.equals("1234")) {// 임시번호 "1234"
+                // 인증번호 일치
+                mv.addObject("result", id);
+            } else {
+                // 인증번호 불일치
+                mv.addObject("message", "발급된 인증번호가 다릅니다");
+            }
+        }
+
+        return mv; 
+    }
+
+
+    @RequestMapping(value = "/findIdPw")
+    public String findIdPw(Model model, HttpServletRequest request) {
+        return "member/findIdPwForm";
+    }
     
     @RequestMapping(value = "/memberEdit", method = RequestMethod.POST)
     public String memberEdit(Model model, HttpServletRequest request) {

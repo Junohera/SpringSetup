@@ -83,19 +83,18 @@ function go_update() {
     }
 }
 
-function move_Pw() {
-    document.frm.action = "shop.do?command=findPwForm";
-    document.frm.submit();
+function findIdPw() {
+    var url = "findIdPw";
+    var opt = "toolbar=no, menubar=no, scrollbars=no, resizable=no, width=700, height=500, top=300, left=300";
+    window.open(url, "find Id/Pw", opt);
 }
 
-function move_Id() {
-    document.frm.action = "shop.do?command=findId";
+function moveId() {
+    document.frm.action = "findIdStep1";
     document.frm.submit();
-}
+};
 
-function find_id() {
-    var url = "shop.do?command=findIdPwd";
-    var op = "toolbar=no, menubar=no, scrollbars=no, resizable=no, width=700, ";
-    opt += "height=500, top=300, left=300";
-    window.open(url, "Find Id/Pw", opt);
-}
+function movePw() {
+    document.frm.action = "findPwStep1";
+    document.frm.submit();
+};

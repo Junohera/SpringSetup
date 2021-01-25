@@ -21,6 +21,14 @@ public class ProductController {
     @Autowired
     ProductService ps;
     
+    @RequestMapping(value = "/productDetail", method = RequestMethod.GET)
+    public ModelAndView productDetail(Model model, HttpServletRequest request, @RequestParam("pseq") int pseq) {
+        ModelAndView mv = new ModelAndView();
+        mv.addObject("p", ps.getProduct(pseq));
+        mv.setViewName("product/productDetail");
+        return mv;
+    }
+    
     @RequestMapping(value = "/category")
     public ModelAndView category(Model model, @RequestParam("kind") String kind) {
         /**

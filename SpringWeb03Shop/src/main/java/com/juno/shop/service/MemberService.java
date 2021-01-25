@@ -35,4 +35,8 @@ public class MemberService {
 		md.updateMember(m);
 	}
 
+	public Member findId(String name, String phone) {
+		return md.getMember(name, phone);
+	}
+
 }

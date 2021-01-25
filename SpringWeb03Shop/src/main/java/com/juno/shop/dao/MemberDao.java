@@ -124,5 +124,32 @@ public class MemberDao {
         , m.getPhone()
         , m.getId());
 	}
+
+	public Member getMember(String name, String phone) {
+		Member m = null;
+		List<Member> list = null;
+        list = tmp.query("SELECT * FROM MEMBER WHERE NAME = ? AND PHONE = ?",
+				new RowMapper<Member>() {
+			@Override
+			public Member mapRow(ResultSet rs, int rowNum) throws SQLException {
+				Member m = new Member();
+                m.setId(rs.getString("id"));
+                m.setPwd(rs.getString("pwd"));
+                m.setName(rs.getString("name"));
+                m.setEmail(rs.getString("email"));
+                m.setZip_num(rs.getString("zip_num"));
+                m.setAddress(rs.getString("address"));
+                m.setPhone(rs.getString("phone"));
+                m.setUseyn(rs.getString("useyn"));
+                m.setIndate(rs.getTimestamp("indate"));
+                return m;
+			}
+		}, name, phone);
+        
+        if (list.size() > 0) {
+        	m = list.get(0);
+        }
+        return m;
+	}
     
 }

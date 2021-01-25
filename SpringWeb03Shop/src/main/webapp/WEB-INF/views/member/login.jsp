@@ -14,7 +14,7 @@
         <div id="buttons">
             <input type="submit" value="login" class="submit" onclick="return loginCheck();">
             <input type="button" value="sign up" class="cancel" onclick="location.href='contract'">
-            <input type="button" value="find id/pw" class="submit" onclick="findId();">
+            <input type="button" value="find id/pw" class="submit" onclick="findIdPw();">
         </div>
         ${message}
     </form>

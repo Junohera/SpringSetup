@@ -89,4 +89,27 @@ public class ProductDao {
 					}
 		}, kind);
 	}
+
+	public Product getProduct(int pseq) {
+		return tmp.query(
+				"SELECT * FROM PRODUCT WHERE PSEQ = ?"
+				, new RowMapper<Product>() {
+					@Override
+					public Product mapRow(ResultSet rs, int rowNum) throws SQLException {
+						Product p = new Product();
+						p.setPseq(rs.getInt("pseq"));
+						p.setName(rs.getString("name"));
+						p.setKind(rs.getString("kind"));
+						p.setPrice1(rs.getInt("price1"));
+						p.setPrice2(rs.getInt("price2"));
+						p.setPrice3(rs.getInt("price3"));
+						p.setContent(rs.getString("content"));
+						p.setImage(rs.getString("image"));
+						p.setUseyn(rs.getString("useyn"));
+						p.setBestyn(rs.getString("bestyn"));
+						p.setIndate(rs.getTimestamp("indate"));
+						return p;
+					}
+		}, pseq).get(0);
+	}
 }

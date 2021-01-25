@@ -16,7 +16,7 @@
     <div id="wrap">
         <header>
             <div id="logo">
-                <a href="/">
+                <a href="/shop/">
                     <img src="resources/images/logo.png" width="180" height="100">
                 </a>
             </div>
@@ -34,7 +34,7 @@
                         </c:otherwise>
                     </c:choose>
                     <li><a href="cartList">CART</a></li>
-                    <li><a href="myPage">mypage</a></li>
+                    <li><a href="mypage">mypage</a></li>
                     <li><a href="qnaList" style="border:0px;">Q&amp;A(1:1)</a></li>
                 </ul>
             </nav>
