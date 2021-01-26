@@ -11,7 +11,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.juno.shop.dto.Address;
 import com.juno.shop.dto.Member;
@@ -22,64 +21,109 @@ public class MemberController {
     
     @Autowired
     MemberService ms;
-
-    @RequestMapping(value = "/findIdStep1")
-    public String findIdStep1(Model model, HttpServletRequest request) {
-        return "member/findIdPwFormStep1"; // 이름, 전화번호 입력폼
+    
+    @RequestMapping(value = "/resetPw")
+    public String resetPw(Model model, HttpServletRequest request
+            , @RequestParam("id") String id
+            , @RequestParam("pwd") String pwd
+            ) {
+        
+        Member m = new Member();
+        m.setId(id);
+        m.setPwd(pwd);
+        ms.resetPw(m);
+        return "member/resetPwComplete";
     }
 
-    @RequestMapping(value = "/findIdStep2", method = RequestMethod.POST)
-    public ModelAndView findIdStep2(Model model, HttpServletRequest request
+    @RequestMapping(value = "/findPwWithIdNamePhone")
+    public String findPwWithIdNamePhone(Model model, HttpServletRequest request
+            , @RequestParam("id") String id
             , @RequestParam("name") String name
             , @RequestParam("phone") String phone
             ) {
+        
+        Member m = ms.findId(id, name, phone);
+        if (m == null) {
+            model.addAttribute("message", "아이디와 이름과 전화번호가 일치하는 회원이 없습니다.");
+            model.addAttribute("id", id);
+            model.addAttribute("name", name);
+            model.addAttribute("phone", phone);
+            return "member/findPwForm";
+        } else {
+            model.addAttribute("m", m);
+            return "member/findPwCertNum";
+        }
+    }
 
-        ModelAndView mv = new ModelAndView();
+    @RequestMapping(value = "/findPwForm")
+    public String findPwForm(Model model, HttpServletRequest request) {
+        return "member/findPwForm";
+    }
+
+    
+    @RequestMapping(value = "/certNumCheckPw")
+    public String certNumCheckPw(Model model, HttpServletRequest request
+            , @RequestParam("name") String name
+            , @RequestParam("phone") String phone
+            , @RequestParam("id") String id
+            , @RequestParam("certNum") String certNum
+            ) {
+        
+        Member m = new Member();
+        m.setId(id);
+        m.setName(name);
+        m.setPhone(phone);
+        model.addAttribute("m", m);
+
+        if (certNum.equals("0000")) {
+            return "member/resetPw";
+        } else {
+            return "member/findPwCertNum";
+        }
+    }
+
+    @RequestMapping(value = "/certNumCheck")
+    public String certNumCheck(Model model, HttpServletRequest request
+            , @RequestParam("name") String name
+            , @RequestParam("phone") String phone
+            , @RequestParam("id") String id
+            , @RequestParam("certNum") String certNum
+            ) {
+        
+        Member m = new Member();
+        m.setId(id);
+        m.setName(name);
+        m.setPhone(phone);
+        model.addAttribute("m", m);
+
+        if (certNum.equals("0000")) {
+            return "member/viewId";
+        } else {
+            return "member/findIdCertNum";
+        }
+    }
+
+    @RequestMapping(value = "/findIdWithNamePhone")
+    public String findIdWithNamePhone(Model model, HttpServletRequest request
+            , @RequestParam("name") String name
+            , @RequestParam("phone") String phone) {
+        
         Member m = ms.findId(name, phone);
         if (m == null) {
-            mv.addObject("message", "없는 유저입니다");
-            mv.setViewName("member/findIdPwFormStep1");
+            model.addAttribute("message", "이름과 전화번호가 일치하는 회원이 없습니다.");
+            model.addAttribute("name", name);
+            model.addAttribute("phone", phone);
+            return "member/findIdForm";
         } else {
-            mv.addObject("name", name);
-            mv.addObject("phone", phone);
-            mv.setViewName("member/findIdPwFormStep3"); // 인증번호 입력창
+            model.addAttribute("m", m);
+            return "member/findIdCertNum";
         }
-        return mv;
     }
 
-    @RequestMapping(value = "/findIdStep3")
-    public ModelAndView findIdStep3(Model model, HttpServletRequest request
-            , @RequestParam("accessNum") String accessNum
-            , @RequestParam("name") String name
-            , @RequestParam("phone") String phone
-            ) {
-
-        ModelAndView mv = new ModelAndView();
-        mv.addObject("name", name);
-        mv.addObject("phone", phone);
-        mv.setViewName("member/findIdPwFormStep3");
-
-        if (accessNum == null || accessNum.equals("")) {
-        } else {
-            // 입력값 존재
-            if (accessNum.equals("1234")) {// 임시번호 "1234"
-                // 인증번호 일치
-            	Member m =  ms.findId(name, phone);
-            	if (m != null) {
-            		mv.addObject("result", m.getId());	
-            	} else {
-            		mv.addObject("message", "회원 찾기 도중 데이터가 변경되었습니다. 관리자에게 문의하세요");
-            	}
-                
-            } else {
-                // 인증번호 불일치
-                mv.addObject("message", "발급된 인증번호가 다릅니다");
-            }
-        }
-
-        return mv; 
+    @RequestMapping(value = "/findIdForm")
+    public String findIdForm(Model model, HttpServletRequest request) {
+        return "member/findIdForm";
     }
-
 
     @RequestMapping(value = "/findIdPw")
     public String findIdPw(Model model, HttpServletRequest request) {

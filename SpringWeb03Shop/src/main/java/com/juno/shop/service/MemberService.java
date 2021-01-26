@@ -39,4 +39,12 @@ public class MemberService {
 		return md.getMember(name, phone);
 	}
 
+	public Member findId(String id, String name, String phone) {
+		return md.getMember(id, name, phone);
+	}
+
+	public void resetPw(Member m) {
+		md.resetPw(m);
+	}
+
 }

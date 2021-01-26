@@ -90,11 +90,11 @@ function findIdPw() {
 }
 
 function moveId() {
-    document.frm.action = "findIdStep1";
+    document.frm.action = "findIdForm";
     document.frm.submit();
 };
 
 function movePw() {
-    document.frm.action = "findPwStep1";
+    document.frm.action = "findPwForm";
     document.frm.submit();
 };
