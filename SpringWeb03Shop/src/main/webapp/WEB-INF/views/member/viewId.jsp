@@ -11,11 +11,15 @@
 </style>
 <script>
     function goLogin() {
-        if (opener.document.loginFrm && opener.document.loginFrm.id) {
-            opener.document.loginFrm.id.value = result;
-            opener.document.loginFrm.pwd.focus();
-        }
+        opener.document.loginFrm.id.value = "${m.id}";
+        opener.document.loginFrm.pwd.value = "";
+        opener.document.loginFrm.pwd.focus();
         self.close();    
+    };
+
+    function movePw() {
+        document.f.action = "findPwForm";
+        document.f.submit();
     };
     
 </script>
@@ -23,7 +27,7 @@
 
 <body>
     <h2>아이디 찾기</h2>
-    <form>
+    <form name="f">
         <table align="center" bgcolor="black" cellspacing="1" width="400">
 
             <tr align="center" bgcolor="white" height="200">
@@ -41,7 +45,7 @@
                         조회한 회원의 아이디는 ${m.id} 입니다.
                     </h3>
                     <input type="button" value="to login" onclick="goLogin();">
-                    <input type="button" value="find Pw" location.href="findPwForm">
+                    <input type="button" value="find Pw" onclick="movePw();">
                 </td>
             </tr>
         </table>

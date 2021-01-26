@@ -11,7 +11,9 @@
 </style>
 <script>
     function toLogin() {
-        opener.location.href="loginForm";
+        opener.document.loginFrm.id.value = "${id}";
+        opener.document.loginFrm.pwd.value = "";
+        opener.document.loginFrm.pwd.focus();
         self.close();
     }
 </script>
