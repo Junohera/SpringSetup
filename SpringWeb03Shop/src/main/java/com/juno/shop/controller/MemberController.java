@@ -32,6 +32,7 @@ public class MemberController {
         m.setId(id);
         m.setPwd(pwd);
         ms.resetPw(m);
+        model.addAttribute("id", id);
         return "member/resetPwComplete";
     }
 
