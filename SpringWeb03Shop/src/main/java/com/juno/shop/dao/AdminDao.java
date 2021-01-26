@@ -174,4 +174,57 @@ public class AdminDao {
 			}
 		}, key, paging.getStartNum(), paging.getEndNum());
 	}
+
+	public void insertProduct(Product p) {
+		tmp.update(
+			"INSERT INTO PRODUCT(PSEQ, KIND, NAME, PRICE1, PRICE2, PRICE3, CONTENT, IMAGE) VALUES(PRODUCT_SEQ.NEXTVAL, ?, ?, ?, ?, ?, ?, ?)"
+			, p.getKind()
+			, p.getName()
+			, p.getPrice1()
+			, p.getPrice2()
+			, p.getPrice3()
+			, p.getContent()
+			, p.getImage()
+		);
+	}
+
+	public void updateProduct(Product p) {
+		tmp.update(
+			"UPDATE PRODUCT SET"
+			+ " KIND = ?"
+			+ " , USEYN = ?"
+			+ " , NAME = ?"
+			+ " , PRICE1 = ?"
+			+ " , PRICE2 = ?"
+			+ " , PRICE3 = ?"
+			+ " , CONTENT = ?"
+			+ " , IMAGE = ?"
+			+ " , BESTYN = ?"
+			+ " WHERE PSEQ = ?"
+			, p.getKind()
+			, p.getUseyn()
+			, p.getName()
+			, p.getPrice1()
+			, p.getPrice2()
+			, p.getPrice3()
+			, p.getContent()
+			, p.getImage()
+			, p.getBestyn()
+			, p.getPseq()
+		);		
+	}
+
+	public void updateOrderResult(int odseq) {
+		tmp.update(
+			"UPDATE ORDER_DETAIL SET RESULT = '2' WHERE ODSEQ = ?"
+			, odseq
+		);
+	}
+
+	public void qnaAttachAnswer(Qna q) {
+		tmp.update(
+			"UPDATE QNA SET REPLY = ?, REP = '2' WHERE QSEQ = ?"
+		, q.getReply(), q.getQseq());
+		
+	}
 }

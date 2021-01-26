@@ -1,7 +1,9 @@
 package com.juno.shop.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -19,16 +21,37 @@ import com.juno.shop.dto.Paging;
 import com.juno.shop.dto.Product;
 import com.juno.shop.dto.Qna;
 import com.juno.shop.service.AdminService;
+import com.juno.shop.service.ProductService;
+import com.juno.shop.service.QnaService;
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 @Controller
 public class AdminController {
 
     @Autowired
     AdminService as;
+    
+    @Autowired
+    ProductService ps;
+
+    @Autowired
+    QnaService qs;
+
+    @Autowired
+    ServletContext ctx;
 
     @RequestMapping(value = "/admin")
     public String admin() {
         return "admin/adminLoginForm";
+    }
+
+    @RequestMapping(value = "/adminLogout")
+    public ModelAndView adminLogout(Model model, HttpServletRequest request) {
+        request.getSession().invalidate();
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("redirect:/admin");
+        return mv;
     }
 
     @RequestMapping(value = "adminLogin", method = RequestMethod.POST)
@@ -255,6 +278,147 @@ public class AdminController {
             mv.setViewName("admin/qna/qnaList");
         }
         
+        return mv;
+    }
+
+    @RequestMapping(value = "adminProductWriteForm")
+    public ModelAndView adminProductWriteForm(Model model, HttpServletRequest request) {
+        String kindList[] = {"Heels", "Boots", "Sandals", "Sneakers", "Slipers", "Sale"};
+        ModelAndView mv = new ModelAndView();
+        mv.addObject("kindList",kindList);
+        mv.setViewName("admin/product/productWrite");
+
+        return mv;
+    }
+
+    @RequestMapping(value = "productWrite")
+    public String productWrite(Model model, HttpServletRequest request) {
+        String savePath = ctx.getRealPath("resources/product_images");
+
+        try {
+            MultipartRequest multi = new MultipartRequest(
+                request
+                , savePath
+                , 5 * 1024 * 1024
+                , "UTF-8"
+                , new DefaultFileRenamePolicy()
+            );
+
+            Product p = new Product();
+            p.setKind(multi.getParameter("kind"));
+            p.setName(multi.getParameter("name"));
+            p.setPrice1(Integer.parseInt(multi.getParameter("price1")));
+            p.setPrice2(Integer.parseInt(multi.getParameter("price2")));
+            p.setPrice3(p.getPrice2() - p.getPrice1());
+            p.setContent(multi.getParameter("content"));
+            p.setImage(multi.getFilesystemName("image"));
+
+            as.insertProduct(p);
+        } catch (IOException e) {e.printStackTrace();}
+        
+        return "redirect:/adminProductList";
+    }
+
+    @RequestMapping(value = "adminProductDetail")
+    public ModelAndView adminProductDetail(Model model, HttpServletRequest request
+            , @RequestParam("pseq") int pseq
+            ) {
+        ModelAndView mv = new ModelAndView();
+        Product p = ps.getProduct(pseq);
+        String kindList[] = {"Heels", "Boots", "Sandals", "Sneakers", "Slipers", "Sale"};
+        mv.addObject("kind", kindList[Integer.parseInt(p.getKind()) - 1]);
+        mv.addObject("p", p);
+        mv.setViewName("admin/product/productDetail");
+        return mv;
+    }
+
+    @RequestMapping(value = "adminProductUpdateForm")
+    public ModelAndView productUpdateForm(Model model, HttpServletRequest request
+            , @RequestParam("pseq") int pseq
+            ) {
+        ModelAndView mv = new ModelAndView();
+        Product p = ps.getProduct(pseq);
+        String kindList[] = {"Heels", "Boots", "Sandals", "Sneakers", "Slipers", "Sale"};
+        mv.addObject("kindList", kindList);
+        System.out.println(p.getKind());
+        mv.addObject("p", p);
+        mv.setViewName("admin/product/productUpdate");
+        return mv;
+    }
+
+    @RequestMapping(value = "adminProductUpdate")
+    public ModelAndView adminProductUpdate(Model model, HttpServletRequest request) {
+        ModelAndView mv = new ModelAndView();
+    
+        String uploadFilePath = ctx.getRealPath("resources/product_images");
+        MultipartRequest multi;
+		try {
+			multi = new MultipartRequest(
+			    request,
+			    uploadFilePath,
+			    5 * 1024 * 1024,
+			    "UTF-8",
+			    new DefaultFileRenamePolicy()
+			);
+			
+			Product p = new Product();
+	        p.setPseq(Integer.parseInt(multi.getParameter("pseq")));
+	        p.setKind(multi.getParameter("kind"));
+	        p.setName(multi.getParameter("name"));
+	        p.setPrice1(Integer.parseInt(multi.getParameter("price1")));
+	        p.setPrice2(Integer.parseInt(multi.getParameter("price2")));
+	        p.setPrice3(Integer.parseInt(multi.getParameter("price3")));
+	        p.setContent(multi.getParameter("content"));
+	        p.setUseyn(multi.getParameter("useyn"));
+	        p.setBestyn(multi.getParameter("bestyn"));
+	        if (multi.getFilesystemName("image") == null) {
+	            p.setImage(multi.getParameter("nonmakeImg"));
+	        } else {
+	            p.setImage(multi.getFilesystemName("image"));
+	        }
+	        
+	        as.updateProduct(p);
+	        mv.addObject("pseq", p.getPseq());
+	        mv.setViewName("redirect:/adminProductDetail");
+	        
+		} catch (IOException e) {e.printStackTrace();}
+        
+        return mv;
+    }
+
+    @RequestMapping(value = "adminOrderSave")
+    public String adminOrderSave(Model model, HttpServletRequest request) {
+        String[] resultArr = request.getParameterValues("result");
+			
+        for (String odseq : resultArr) {
+            as.updateOrderResult(Integer.parseInt(odseq));
+        }
+        return "redirect:/adminOrderList";
+    }
+    
+    @RequestMapping(value = "adminQnaDetail")
+    public ModelAndView adminQnaDetail(Model model, HttpServletRequest request
+            , @RequestParam("qseq") int qseq
+            ) {
+        ModelAndView mv = new ModelAndView();
+        mv.addObject("q", qs.getQna(qseq));
+        mv.setViewName("admin/qna/qnaDetail");
+        return mv;
+    }
+
+    @RequestMapping(value = "adminQnaAttachAnswer")
+    public ModelAndView adminQnaAttachAnswer(Model model, HttpServletRequest request
+            , @RequestParam("qseq") int qseq
+            , @RequestParam("reply") String reply
+        ) {
+        ModelAndView mv = new ModelAndView();
+        Qna q = new Qna();
+        q.setQseq(qseq);
+        q.setReply(reply);
+        as.qnaAttachAnswer(q);
+        mv.addObject("q", q);
+        mv.addObject("qseq", qseq);
+        mv.setViewName("redirect:/adminQnaDetail");
         return mv;
     }
 

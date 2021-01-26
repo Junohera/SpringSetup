@@ -30,7 +30,7 @@
             <c:when test="${q.rep == '1'}">
                 <table id="orderList">
                     <tr>
-                        <td colspan="2"><img src="admin/images/opinionimg01.gif"></td>
+                        <td colspan="2"><img src="resources/admin/images/opinionimg01.gif"></td>
                     </tr>
                     <tr>
                         <td colspan="2">

@@ -1,5 +1,5 @@
 function go_mov() {
-    location.href="shop.do?command=adminProductList";
+    location.href="adminProductList";
 };
 
 function go_save() {
@@ -34,23 +34,23 @@ function go_save() {
         alert("image");
         document.frm.image.focus();
     } else {
-        document.frm.action = "shop.do?command=adminProductWrite";
+        document.frm.action = "productWrite";
         document.frm.submit();
     }
 };
 
 function go_wrt() {
-    document.frm.action = "shop.do?command=adminProductWriteForm";
+    document.frm.action = "adminProductWriteForm";
     document.frm.submit();
 };
 
 function go_detail(pseq) {
-    document.frm.action = "shop.do?command=adminProductDetail&pseq=" + pseq;
+    document.frm.action = "adminProductDetail?pseq=" + pseq;
     document.frm.submit();
 };
 
 function go_mod(pseq) {
-    document.frm.action = "shop.do?command=adminProductUpdateForm&pseq=" + pseq;
+    document.frm.action = "adminProductUpdateForm?pseq=" + pseq;
     document.frm.submit();
 };
 
@@ -72,7 +72,7 @@ function go_mod_save() {
         document.frm.content.focus();
     } else {
         if (confirm("수정하시겠습니까?")) {
-            document.frm.action = "shop.do?command=adminProductUpdate";
+            document.frm.action = "adminProductUpdate";
             document.frm.submit();
         }
     }
@@ -96,22 +96,22 @@ function go_order_save() {
     if (count === 0) {
         alert("주문할 항목을 선택해주세요")
     } else {
-        document.frm.action = "shop.do?command=adminOrderSave";
+        document.frm.action = "adminOrderSave";
         document.frm.submit();
     }
 };
 
 function go_view(qseq) {
-    document.frm.action = "shop.do?command=adminQnaDetail&qseq=" + qseq;
+    document.frm.action = "adminQnaDetail?qseq=" + qseq;
     document.frm.submit();
 };
 
 function go_rep() {
-    document.frm.action = "shop.do?command=adminQnaAttachAnswer";
+    document.frm.action = "adminQnaAttachAnswer";
     document.frm.submit();
 };
 
 function go_list() {
-    document.frm.action = "shop.do?command=adminQnaList";
+    document.frm.action = "adminQnaList";
     document.frm.submit();
 };

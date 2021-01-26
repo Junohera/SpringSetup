@@ -12,7 +12,7 @@
                     <th>상품분류</th>
                     <td colspan="5">
                         <select name="kind">
-                        	<c:forEach items="${kindList }" var="kind" varStatus="status">
+                        	<c:forEach items="${kindList}" var="kind" varStatus="status">
                         		<option value="${status.count}">${kind}</option>
                         	</c:forEach>
                         </select>

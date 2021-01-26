@@ -87,14 +87,14 @@
             <tr>
                 <th>상품이미지</th>
                 <td colspan="5">
-                    <img src="product_images/${p.image}" width="200pt">
+                    <img src="resources/product_images/${p.image}" width="200pt">
                     <br>
                     <input type="file" name="image" id="image" >
                 </td>
             </tr>
         </table>
         <input class="btn" type="button" value="수정" onclick="go_mod_save()">
-        <input class="btn" type="button" value="취소" onclick="location.href='shop.do?command=adminProductDetail&pseq=${p.pseq}'">
+        <input class="btn" type="button" value="취소" onclick="location.href='adminProductDetail?pseq=${p.pseq}'">
 
     </form>
 </article>

@@ -42,4 +42,20 @@ public class AdminService {
 		return ad.selectQna(paging, searchType, key);
 	}
 
+	public void insertProduct(Product p) {
+		ad.insertProduct(p);
+	}
+
+	public void updateProduct(Product p) {
+		ad.updateProduct(p);
+	}
+
+	public void updateOrderResult(int odseq) {
+		ad.updateOrderResult(odseq);
+	}
+
+	public void qnaAttachAnswer(Qna q) {
+		ad.qnaAttachAnswer(q);
+	}
+
 }
