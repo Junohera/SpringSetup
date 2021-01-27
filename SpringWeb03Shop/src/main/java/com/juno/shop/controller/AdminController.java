@@ -340,7 +340,6 @@ public class AdminController {
         Product p = ps.getProduct(pseq);
         String kindList[] = {"Heels", "Boots", "Sandals", "Sneakers", "Slipers", "Sale"};
         mv.addObject("kindList", kindList);
-        System.out.println(p.getKind());
         mv.addObject("p", p);
         mv.setViewName("admin/product/productUpdate");
         return mv;
@@ -371,6 +370,7 @@ public class AdminController {
 	        p.setContent(multi.getParameter("content"));
 	        p.setUseyn(multi.getParameter("useyn"));
 	        p.setBestyn(multi.getParameter("bestyn"));
+	        
 	        if (multi.getFilesystemName("image") == null) {
 	            p.setImage(multi.getParameter("nonmakeImg"));
 	        } else {
@@ -387,9 +387,8 @@ public class AdminController {
     }
 
     @RequestMapping(value = "adminOrderSave")
-    public String adminOrderSave(Model model, HttpServletRequest request) {
-        String[] resultArr = request.getParameterValues("result");
-			
+    public String adminOrderSave(Model model, HttpServletRequest request
+            , @RequestParam("result") String[] resultArr) {
         for (String odseq : resultArr) {
             as.updateOrderResult(Integer.parseInt(odseq));
         }

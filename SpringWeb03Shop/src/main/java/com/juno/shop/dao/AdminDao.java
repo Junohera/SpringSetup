@@ -97,9 +97,9 @@ public class AdminDao {
 				+ " SELECT * FROM ("
 				+ " SELECT * FROM ("
 				+ " SELECT ROWNUM AS RN, P.* FROM (("
-				+ " SELECT * FROM ORDER_VIEW WHERE " + searchType + " LIKE '%'||?||'%' ORDER BY RESULT, OSEQ DESC) P))"
-				+ " WHERE RN >= ?)"
-				+ " WHERE RN <= ?"
+				+ " SELECT * FROM ORDER_VIEW WHERE " + searchType + " LIKE '%'||?||'%' ORDER BY RESULT, OSEQ DESC) P)"
+				+ " ) WHERE RN >= ?"
+				+ " ) WHERE RN <= ?"
 				, new RowMapper<Order>() {
 			@Override
 			public Order mapRow(ResultSet rs, int rowNum) throws SQLException {
