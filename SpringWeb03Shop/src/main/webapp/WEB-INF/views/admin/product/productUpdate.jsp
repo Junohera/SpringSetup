@@ -89,11 +89,11 @@
                 <td colspan="5">
                     <img src="resources/product_images/${p.image}" width="200pt">
                     <br>
-                    <input type="file" name="image" id="image" >
+                    <input type="file" name="image" id="image" > * 주의 : 이미지를 수정할 때에만 선택해주세요.
                 </td>
             </tr>
         </table>
-        <input class="btn" type="button" value="수정" onclick="go_mod_save()">
+        <input class="btn" type="button" value="수정" onclick="go_mod_save();">
         <input class="btn" type="button" value="취소" onclick="location.href='adminProductDetail?pseq=${p.pseq}'">
 
     </form>
