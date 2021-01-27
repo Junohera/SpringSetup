@@ -19,6 +19,7 @@ function go_total_qna() {
 <article>
     <h1>Q&amp;A 게시글 리스트</h1>
     <form name="frm" method="POST">
+        <input type="hidden" name="qseq">
     	<table style="float:right;">
     		<tr>
 	    		<td>제목

@@ -102,7 +102,8 @@ function go_order_save() {
 };
 
 function go_view(qseq) {
-    document.frm.action = "adminQnaDetail?qseq=" + qseq;
+    document.frm.action = "adminQnaDetail";
+    document.frm.qseq.value = qseq;
     document.frm.submit();
 };
 
